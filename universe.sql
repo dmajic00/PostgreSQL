@@ -49,7 +49,7 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.galaxy (
     galaxy_id integer NOT NULL,
-    galaxy_name character varying(60) NOT NULL,
+    name character varying(60) NOT NULL,
     notable_feature text,
     age_in_billions_of_years numeric(3,1),
     diameter_in_light_years integer,
@@ -87,7 +87,7 @@ ALTER SEQUENCE public.galaxy_galaxy_id_seq OWNED BY public.galaxy.galaxy_id;
 
 CREATE TABLE public.galaxy_type (
     galaxy_type_id integer NOT NULL,
-    galaxy_type_name character varying(30) NOT NULL,
+    name character varying(30) NOT NULL,
     name_abbrevation character varying(3) NOT NULL
 );
 
@@ -122,7 +122,7 @@ ALTER SEQUENCE public.galaxy_type_galaxy_type_id_seq OWNED BY public.galaxy_type
 
 CREATE TABLE public.moon (
     moon_id integer NOT NULL,
-    moon_name character varying(60) NOT NULL,
+    name character varying(60) NOT NULL,
     planet_id integer NOT NULL,
     discovery_year integer,
     age_in_billions_of_years numeric(2,1)
@@ -159,7 +159,7 @@ ALTER SEQUENCE public.moon_moon_id_seq OWNED BY public.moon.moon_id;
 
 CREATE TABLE public.planet (
     planet_id integer NOT NULL,
-    planet_name character varying(60) NOT NULL,
+    name character varying(60) NOT NULL,
     star_id integer NOT NULL,
     has_moon boolean,
     habitable boolean
@@ -196,7 +196,7 @@ ALTER SEQUENCE public.planet_planet_id_seq OWNED BY public.planet.planet_id;
 
 CREATE TABLE public.star (
     star_id integer NOT NULL,
-    star_name character varying(60) NOT NULL,
+    name character varying(60) NOT NULL,
     galaxy_id integer NOT NULL,
     temperature_in_celsius integer,
     latin_name text
@@ -389,7 +389,7 @@ SELECT pg_catalog.setval('public.star_star_id_seq', 10, true);
 --
 
 ALTER TABLE ONLY public.galaxy
-    ADD CONSTRAINT galaxy_galaxy_name_key UNIQUE (galaxy_name);
+    ADD CONSTRAINT galaxy_galaxy_name_key UNIQUE (name);
 
 
 --
@@ -405,7 +405,7 @@ ALTER TABLE ONLY public.galaxy
 --
 
 ALTER TABLE ONLY public.galaxy_type
-    ADD CONSTRAINT galaxy_type_galaxy_type_name_key UNIQUE (galaxy_type_name);
+    ADD CONSTRAINT galaxy_type_galaxy_type_name_key UNIQUE (name);
 
 
 --
@@ -429,7 +429,7 @@ ALTER TABLE ONLY public.galaxy_type
 --
 
 ALTER TABLE ONLY public.moon
-    ADD CONSTRAINT moon_moon_name_key UNIQUE (moon_name);
+    ADD CONSTRAINT moon_moon_name_key UNIQUE (name);
 
 
 --
@@ -453,7 +453,7 @@ ALTER TABLE ONLY public.planet
 --
 
 ALTER TABLE ONLY public.planet
-    ADD CONSTRAINT planet_planet_name_key UNIQUE (planet_name);
+    ADD CONSTRAINT planet_planet_name_key UNIQUE (name);
 
 
 --
@@ -469,7 +469,7 @@ ALTER TABLE ONLY public.star
 --
 
 ALTER TABLE ONLY public.star
-    ADD CONSTRAINT star_star_name_key UNIQUE (star_name);
+    ADD CONSTRAINT star_star_name_key UNIQUE (name);
 
 
 --
